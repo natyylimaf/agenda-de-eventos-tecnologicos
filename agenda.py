@@ -1,6 +1,6 @@
 from time import sleep
 
-vetor_dias = ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4']
+vetor_dias = ['Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira']
 vetor_turnos = ['Manhã', 'Tarde', 'Noite']
 
 matriz_eventos = [
@@ -104,17 +104,89 @@ def cadastro_eventos():
     print('\n')
 
 
+# Função de listar eventos
+def listar_eventos():
+    print('===========================================')
 
-# def listar_eventos():
+# Loop que percorre todos os dias da semana (vetor_dias)
+    for i in range(len(vetor_dias)):
+        # Exibe o dia atual 
+        print(f'\U0001F4C5 {vetor_dias[i]}:')
+        
+        # Loop que percorre os turnos do dia (vetor_turnos)
+        for j in range(len(vetor_turnos)):
+            # Recupera o evento e o palestrante daquele dia e turno da matriz
+            evento = matriz_eventos[i][j]
+            palestrante = matriz_palestrante[i][j]
+            turno = vetor_turnos[j]
 
-# def buscar_evento():
+            # Se houver um evento (evento não é uma string vazia), exibe o evento e o palestrante
+            if evento != '':
+                print(f'\U0001F552 {turno}: "{evento}" com {palestrante}')
+            # Caso contrário, informa que não há evento cadastrado para aquele turno
+            else:
+                print(f'\U0001F552 {turno}: [Sem evento cadastrado]')
+        
+        # Exibe uma linha de separação após listar todos os turnos de um dia
+        print('-' * 40)
+        
+    print('===========================================\n')
+    print('\n')
+
+
+def buscar_evento():
+    print('===========================================')
+    
+    # Mostrar dias
+    print('\U0001F4C5 Escolha um dia:')
+    print('-' * 40)
+    print('Dias:')
+    for i, dia in enumerate(vetor_dias):
+        print(f'{i} - {dia}')
+    try:
+        linha = int(input('Informe o número do dia: '))
+        if linha < 0 or linha >= len(vetor_dias):
+            print('\u274C  Dia inválido!')
+            return
+    except ValueError:
+        print('\u274C  Entrada inválida! Digite um número.')
+        return
+
+    # Mostrar turnos
+    print('\n\U0001F552 Escolha um turno:')
+    print('-' * 40)
+    print('Turnos:')
+    for j, turno in enumerate(vetor_turnos):
+        print(f'{j} - {turno}')
+    try:
+        coluna = int(input('Informe o número do turno: '))
+        if coluna < 0 or coluna >= len(vetor_turnos):
+            print('\u274C  Turno inválido!')
+            return
+    except ValueError:
+        print('\u274C  Entrada inválida! Digite um número.')
+        return
+
+    # Resultado da busca
+    evento = matriz_eventos[linha][coluna]
+    palestrante = matriz_palestrante[linha][coluna]
+
+
+    print('\n\U0001F4C4 RESULTADO DA BUSCA:')
+    if evento != '':
+        print(f'\U0001F4DD Evento: {evento}')
+        print(f'\U0001F3A4 Palestrante: {palestrante}')
+    else:
+        print(f'\u26A0\ufe0f  Nenhum evento encontrado em {vetor_dias[linha]} ({vetor_turnos[coluna]})')
+        
+    print('===========================================\n')
+    print('\n')
+
+
 
 # def atualizar_evento():
 
 # def relatorio_por_dia():
-
-
-
 
 
 
@@ -144,10 +216,10 @@ def menu():
                 cadastro_eventos()
             case '2':
                 print('\U0001F4DC Opção de listagem selecionada.\n')
-                # Chamar a função de listagem de eventos aqui
+                listar_eventos()
             case '3':
                 print('\U0001F50D Opção de busca selecionada.\n')
-                # Chamar a função de buscar eventos aqui
+                buscar_evento()
             case '4':
                 print('\U0001F4DD Opção de atualização selecionada.\n')
                 # Chamar função de atualizar evento aqui
