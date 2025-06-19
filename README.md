@@ -29,11 +29,11 @@ A aplicação simula o **agendamento de eventos tecnológicos** organizados por 
 - Cadastro de eventos (escolha de dia e turno, nome do evento e palestrante)
 - Listagem de eventos
 - Busca por evento
+- Atualização de eventos
 
 ---
 
 ## 🧩 Funcionalidades planejadas
 
-- **Atualização de eventos** – Possibilita alterar os dados de um evento já cadastrado.
 - **Relatório por dia** – Informa os eventos cadastrados em um dia específico.
 
